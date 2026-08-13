@@ -68,6 +68,9 @@ Task-1-Car-Colour-Detection/
 ├── test_traffic.py
 ├── yolo11n.pt
 └── README.md
+
+
+
 ## Result Screenshot
 
-<img src="./screenshots/traffic_detection_result.jpg" alt="Traffic Detection Result" width="800">
+<img src="./Task-1-Car-Colour-Detection/screenshots/traffic_detection_result.jpg" alt="Traffic Detection Result" width="800">
