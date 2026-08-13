@@ -70,4 +70,4 @@ Task-1-Car-Colour-Detection/
 └── README.md
 ## Result Screenshot
 
-![Traffic Detection Result](./screenshots/traffic_detection_result.jpg)
+<img src="./screenshots/traffic_detection_result.jpg" alt="Traffic Detection Result" width="800">
