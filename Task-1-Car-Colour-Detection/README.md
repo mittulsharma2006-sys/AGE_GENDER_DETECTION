@@ -68,7 +68,7 @@ Task-1-Car-Colour-Detection/
 ├── test_traffic.py
 ├── yolo11n.pt
 └── README.md
-
+```
 
 
 
