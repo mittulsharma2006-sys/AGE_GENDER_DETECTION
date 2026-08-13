@@ -73,4 +73,4 @@ Task-1-Car-Colour-Detection/
 
 ## Result Screenshot
 
-<img src="./Task-1-Car-Colour-Detection/screenshots/traffic_detection_result.jpg" alt="Traffic Detection Result" width="800">
+<img src="./screenshots/traffic_detection_result.jpg" alt="Traffic Detection Result" width="800">
