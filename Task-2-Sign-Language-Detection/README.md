@@ -1,63 +1,52 @@
-# 🤟 Sign Language Detection
+# Sign Language Detection — Task 2
 
-An AI-powered Sign Language Detection application that recognizes American Sign Language (ASL) hand signs using a trained deep learning model, MediaPipe hand landmarks, OpenCV, and Streamlit.
+## Overview
 
-## 🚀 Features
+This project is a machine learning based Sign Language Detection system developed as part of Internship Task 2.
 
-- Real-time sign language detection using a webcam
-- Image upload for sign prediction
-- Recognizes ASL signs from **A to F**
-- MediaPipe-based hand landmark detection
-- Displays prediction confidence
-- Draws hand landmarks on the camera feed
-- User-friendly Streamlit interface
-- Application operates between **6:00 PM and 10:00 PM**
+The system can recognize selected American Sign Language (ASL) signs using hand landmarks extracted with MediaPipe and a trained neural network model.
 
-## 🧠 How It Works
+The application provides a Streamlit GUI with:
 
-The application follows this pipeline:
+- Upload Image detection
+- Real-Time Camera detection
+- Predicted sign
+- Confidence score
+- Hand landmark visualization
+- Time-based operation from 6 PM to 10 PM
 
-**Input Image / Webcam → MediaPipe Hand Detection → 21 Hand Landmarks → Neural Network → Sign Prediction**
+## Supported Signs
 
-MediaPipe extracts the hand's 21 landmarks. Each landmark contains X, Y, and Z coordinates, producing 63 values that are passed to the trained neural network.
+The current model supports:
 
-The model predicts one of the six supported signs:
+**A, B, C, D, E and F**
 
-**A, B, C, D, E, F**
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Python
-- TensorFlow / Keras
+- TensorFlow
+- Keras
 - MediaPipe
 - OpenCV
 - NumPy
 - Streamlit
-- Streamlit-WebRTC
-- Pillow
-- PyAV
+- Streamlit WebRTC
+- scikit-learn
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 Task-2-Sign-Language-Detection/
 │
-├── dataset/
-│   ├── A/
-│   ├── B/
-│   ├── C/
-│   ├── D/
-│   ├── E/
-│   └── F/
-│
 ├── models/
 │   └── sign_language_model.keras
-│
-├── raw_dataset/
 │
 ├── sample_images/
 │
 ├── screenshots/
+│   ├── upload_image.png
+│   ├── real_time.png
+│   └── time_restriction.png
 │
 ├── app.py
 ├── predict.py
