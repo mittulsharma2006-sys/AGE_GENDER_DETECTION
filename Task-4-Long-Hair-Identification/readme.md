@@ -1,222 +1,215 @@
-\# Task 4 — Long Hair Identification
+# Task 4 — Long Hair Identification
 
+## 📌 Project Overview
 
+This project implements the **Long Hair Identification** task using a custom-trained machine learning model and a Streamlit-based graphical user interface (GUI).
 
-\## Description
+The system combines:
 
+- Age detection
+- Gender detection
+- Hair-length classification
+- Conditional gender prediction based on age and hair length
 
+The special hair-based gender logic is applied only to people between **20 and 30 years of age**.
 
-This project implements the Long Hair Identification task using a custom-trained machine learning model and a Streamlit GUI.
+---
 
+## 🎯 Objective
 
+The objective of this task is to build a system that:
 
-The system detects:
+1. Detects the person's age.
+2. Detects the person's gender.
+3. Identifies whether the person has long or short hair.
+4. Applies the required Task 4 gender rules.
+5. Provides the results through an easy-to-use GUI.
 
+---
 
+## 🧠 Task 4 Logic
 
-\- Age
+The hair-based gender modification is applied only when the detected age is between **20 and 30 years inclusive**.
 
-\- Gender
-
-\- Hair length
-
-\- Final gender according to the Task 4 rules
-
-
-
-The hair-length model classifies hair as either \*\*Long\*\* or \*\*Short\*\*.
-
-
-
-\## Task 4 Logic
-
-
-
-The special hair-based gender logic is applied only when the detected age is between \*\*20 and 30 years inclusive\*\*.
-
-
-
-| Age | Hair | Final Gender |
-
+| Age | Hair Length | Final Gender |
 |---|---|---|
-
 | 20–30 | Long | Female |
-
 | 20–30 | Short | Male |
+| Below 20 | Any | Detected Gender |
+| Above 30 | Any | Detected Gender |
 
-| Below 20 | Any | Detected gender |
+### Logic
 
-| Above 30 | Any | Detected gender |
+For individuals aged **20–30**:
 
+- Long hair → Female
+- Short hair → Male
 
+For individuals **below 20 or above 30**:
 
-Therefore, for people aged 20–30, hair length overrides the detected gender.
+- The detected gender is retained regardless of hair length.
 
+This implements the exact conditional logic required by the task.
 
+---
 
-For people outside this age range, the detected gender is retained regardless of hair length.
+## 🤖 Machine Learning Model
 
+### Hair-Length Classification
 
+A custom hair-length classification model was trained using **MobileNetV2 transfer learning**.
 
-\## Machine Learning Model
+The model classifies images into two categories:
 
+- **Long Hair**
+- **Short Hair**
 
+The original MobileNetV2 network was used as the feature extractor and a custom classification layer was trained for the hair-length task.
 
-A MobileNetV2-based transfer-learning model was trained specifically for hair-length classification.
+### Age and Gender Detection
 
+**InsightFace** is used during inference to detect:
 
+- Age
+- Gender
+- Face location
 
-\### Dataset
+The detected face is used to identify the relevant hair region before passing it to the hair-length classifier.
 
+---
 
+## 📊 Dataset
 
-The project uses:
+The project uses the following publicly available datasets and annotations:
 
+### PA-100K
 
+PA-100K is a pedestrian attribute dataset containing **100,000 pedestrian images**.
 
-\- \*\*PA-100K\*\* pedestrian images
+Official repository:
 
-\- \*\*UPAR\*\* unified pedestrian attribute annotations
+https://github.com/xh-liu/HydraPlus-Net
 
+Official dataset download:
 
+https://drive.google.com/drive/folders/0B5_Ra3JsEOyOUlhKM0VPZ1ZWR2M?resourcekey=0-CdctEkdX1j2GSMSWWfrPSQ&usp=sharing
 
-The UPAR annotations provide hair-length labels including:
+### UPAR
 
+UPAR provides unified pedestrian attribute annotations, including hair-length attributes.
 
+Hair-length attributes used:
 
-\- Hair-Length-Short
+- Hair-Length-Short
+- Hair-Length-Long
+- Hair-Length-Bald
 
-\- Hair-Length-Long
+Bald samples and ambiguous samples containing both Short and Long labels were excluded.
 
-\- Hair-Length-Bald
+Official repository:
 
+https://github.com/speckean/upar_dataset
 
+UPAR annotation file:
 
-Bald and ambiguous Short+Long samples were excluded.
+https://raw.githubusercontent.com/speckean/upar_dataset/main/UPAR/dataset_all.pkl
 
+UPAR Challenge:
 
+https://chalearnlap.cvc.uab.es/dataset/45/description/
 
-A balanced dataset of 10,000 images was prepared:
+---
 
+## 📁 Dataset Preparation
 
+A balanced dataset containing **10,000 images** was prepared from the available PA-100K images and UPAR annotations.
 
-\- 5,000 Short Hair
+### Dataset Composition
 
-\- 5,000 Long Hair
+- 5,000 Long Hair images
+- 5,000 Short Hair images
 
+Bald and ambiguous samples were excluded from training.
 
+---
 
-\### Dataset Split
+## 📈 Dataset Split
 
-
-
-| Split | Short | Long | Total |
-
+| Split | Short Hair | Long Hair | Total |
 |---|---:|---:|---:|
-
 | Training | 3,513 | 3,487 | 7,000 |
-
 | Validation | 732 | 768 | 1,500 |
-
 | Testing | 755 | 745 | 1,500 |
+| **Total** | **5,000** | **5,000** | **10,000** |
 
+---
 
-
-\## Model Performance
-
-
+## 🏆 Model Performance
 
 The trained hair-length classifier achieved:
 
+### Test Accuracy
 
+**74.13%**
 
-\*\*Test Accuracy: 74.13%\*\*
-
-
-
-Classification performance:
-
-
+### Classification Report
 
 | Class | Precision | Recall | F1-Score |
-
 |---|---:|---:|---:|
+| Long Hair | 0.75 | 0.72 | 0.73 |
+| Short Hair | 0.73 | 0.76 | 0.75 |
 
-| Long | 0.75 | 0.72 | 0.73 |
+The model was evaluated on **1,500 previously unseen test images**.
 
-| Short | 0.73 | 0.76 | 0.75 |
+---
 
+## 🛠️ Technologies Used
 
+- Python
+- TensorFlow
+- Keras
+- MobileNetV2
+- InsightFace
+- OpenCV
+- Streamlit
+- NumPy
+- Pillow
+- scikit-learn
 
-\## Technologies Used
+---
 
-
-
-\- Python
-
-\- TensorFlow
-
-\- Keras
-
-\- MobileNetV2
-
-\- InsightFace
-
-\- OpenCV
-
-\- Streamlit
-
-\- NumPy
-
-\- Pillow
-
-\- Scikit-learn
-
-
-
-\## Project Structure
-
-
+## 📂 Project Structure
 
 ```text
-
 Task-4-Long-Hair-Identification/
-
 │
-
 ├── app.py
-
 ├── README.md
-
 ├── .gitignore
-
 │
-
-├── models/
-
-│   └── hair\_length\_model.keras
-
-│
-
 ├── src/
-
-│   ├── prepare\_dataset.py
-
-│   ├── train\_hair\_model.py
-
-│   └── evaluate\_model.py
-
+│   ├── prepare_dataset.py
+│   ├── train_hair_model.py
+│   └── evaluate_model.py
 │
-
-├── screenshots/
-
+├── models/
+│   └── hair_length_model.keras
 │
-
 ├── dataset/
-
-├── raw\_data/
-
+│   ├── train/
+│   │   ├── long/
+│   │   └── short/
+│   │
+│   ├── val/
+│   │   ├── long/
+│   │   └── short/
+│   │
+│   └── test/
+│       ├── long/
+│       └── short/
+│
+├── screenshots/
+│
+├── raw_data/
 ├── data.zip
-
 └── venv/
-
