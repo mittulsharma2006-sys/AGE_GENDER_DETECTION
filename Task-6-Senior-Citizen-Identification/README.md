@@ -1,4 +1,4 @@
-\# Task 6 - Senior Citizen Identification
+\# Task 6 — Senior Citizen Identification
 
 
 
@@ -6,11 +6,19 @@
 
 
 
-This project implements a computer vision system for identifying senior citizens in a mall, store, or similar environment using a live webcam feed.
+This project implements a machine learning and computer vision system for identifying senior citizens in a real-time webcam environment such as a mall, store, or local business.
 
 
 
-The system detects multiple people, tracks them individually, estimates their age and gender, identifies senior citizens based on age, and records their visit information in a CSV file.
+The system detects people using YOLO11, tracks each person using a unique ID, detects their face, estimates their age and gender, determines whether they are a senior citizen, and records their visit information in a CSV file.
+
+
+
+The project is designed to support multiple people appearing simultaneously in the camera feed.
+
+
+
+\---
 
 
 
@@ -18,23 +26,29 @@ The system detects multiple people, tracks them individually, estimates their ag
 
 
 
-The objective of this task is to develop a machine learning and computer vision system that can:
+The main objectives of this task are:
 
 
 
-\- Detect multiple people in a video or real-time webcam feed.
+\- Detect multiple persons in a video or real-time webcam feed.
 
 \- Track each detected person using a unique ID.
 
-\- Estimate the person's age.
+\- Detect the person's face.
 
-\- Estimate the person's gender.
+\- Predict the person's age.
+
+\- Predict the person's gender.
 
 \- Mark a person as a senior citizen if their age is greater than 60.
 
-\- Record the person's age, gender, senior-citizen status, and visit time.
+\- Record the person's age, gender, senior-citizen status, and time of visit.
 
 \- Store the collected information in a CSV file.
+
+
+
+\---
 
 
 
@@ -42,49 +56,29 @@ The objective of this task is to develop a machine learning and computer vision 
 
 
 
-The system follows this logic:
+The system follows the required logic:
+
+
+
+| Condition | Result |
+
+|---|---|
+
+| Age ≤ 60 | Regular person |
+
+| Age > 60 | Senior Citizen |
+
+| Age > 60 | Gender is also displayed |
+
+| New person detected | Visit information is logged |
+
+
+
+The senior citizen condition is:
 
 
 
 ```text
 
-Webcam / Video
-
-&#x20;     ↓
-
-YOLO Person Detection
-
-&#x20;     ↓
-
-Person Tracking
-
-&#x20;     ↓
-
-Face Detection
-
-&#x20;     ↓
-
-Age \& Gender Prediction
-
-&#x20;     ↓
-
-Is Age > 60?
-
-&#x20;  ↙         ↘
-
-&#x20;Yes          No
-
-&#x20; ↓            ↓
-
-Senior      Regular
-
-Citizen      Person
-
-&#x20; ↓
-
-Record Information
-
-&#x20;     ↓
-
-CSV Log
+Age > 60
 
