@@ -14,7 +14,7 @@ The system detects people using YOLO11, tracks each person using a unique ID, de
 
 
 
-The project is designed to support multiple people appearing simultaneously in the camera feed.
+The system is designed to support multiple people appearing simultaneously in the camera feed.
 
 
 
@@ -68,13 +68,17 @@ The system follows the required logic:
 
 | Age > 60 | Senior Citizen |
 
-| Age > 60 | Gender is also displayed |
+| Age > 60 | Gender is displayed |
 
 | New person detected | Visit information is logged |
 
 
 
-The senior citizen condition is:
+\### Senior Citizen Rule
+
+
+
+A person is classified as a senior citizen when:
 
 
 
