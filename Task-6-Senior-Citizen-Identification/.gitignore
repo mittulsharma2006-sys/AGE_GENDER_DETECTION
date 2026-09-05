@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Dataset
+dataset/
+
+# Output logs
+output/
+
+# Model files
+*.h5
+
+# YOLO weights
+yolo11n.pt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
