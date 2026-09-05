@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Datasets and audio
+dataset/
+sample_audio/
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+# Raw datasets
+raw_data/
+
+# Old/unused models
+models/age_voice_model.pkl
+models/emotion_cnn_labels.npy
+models/emotion_cnn_model.keras
+models/emotion_labels.npy
+models/emotion_model.keras
