@@ -1,88 +1,52 @@
-\# Task 6 — Senior Citizen Identification
+# Task 6 — Senior Citizen Identification
 
+## 📝 Project Overview
 
+This project implements a real-time machine learning and computer vision system for identifying senior citizens in a webcam or video feed.
 
-\## Project Overview
+The system detects multiple people, assigns a unique tracking ID to each person, detects their face, predicts their age and gender, and identifies whether they are senior citizens.
 
+If the detected age is greater than 60 years, the person is classified as a **Senior Citizen**.
 
+The system also records the person's:
 
-This project implements a machine learning and computer vision system for identifying senior citizens in a real-time webcam environment such as a mall, store, or local business.
+- Age
+- Gender
+- Senior Citizen status
+- Time of visit
 
+The collected information is automatically stored in a CSV file.
 
+---
 
-The system detects people using YOLO11, tracks each person using a unique ID, detects their face, estimates their age and gender, determines whether they are a senior citizen, and records their visit information in a CSV file.
+## 🎯 Objective
 
+The objective of this task is to build a system that:
 
+1. Detects multiple persons in a video or real-time webcam feed.
+2. Tracks each detected person using a unique ID.
+3. Detects the person's face.
+4. Predicts the person's age.
+5. Predicts the person's gender.
+6. Identifies whether the person is a senior citizen.
+7. Records the person's visit information.
+8. Stores the results in a CSV file.
 
-The system is designed to support multiple people appearing simultaneously in the camera feed.
+---
 
+## 🧠 Task 6 Logic
 
+The senior citizen classification is based on the person's predicted age.
 
-\---
+| Age | Gender | Final Result |
+|---|---|---|
+| ≤ 60 | Any | Regular Person |
+| > 60 | Male | Senior Citizen |
+| > 60 | Female | Senior Citizen |
 
-
-
-\## Objective
-
-
-
-The main objectives of this task are:
-
-
-
-\- Detect multiple persons in a video or real-time webcam feed.
-
-\- Track each detected person using a unique ID.
-
-\- Detect the person's face.
-
-\- Predict the person's age.
-
-\- Predict the person's gender.
-
-\- Mark a person as a senior citizen if their age is greater than 60.
-
-\- Record the person's age, gender, senior-citizen status, and time of visit.
-
-\- Store the collected information in a CSV file.
-
-
-
-\---
-
-
-
-\## Task Logic
-
-
-
-The system follows the required logic:
-
-
-
-| Condition | Result |
-
-|---|---|
-
-| Age ≤ 60 | Regular person |
-
-| Age > 60 | Senior Citizen |
-
-| Age > 60 | Gender is displayed |
-
-| New person detected | Visit information is logged |
-
-
-
-\### Senior Citizen Rule
-
-
+### Senior Citizen Rule
 
 A person is classified as a senior citizen when:
 
-
-
 ```text
-
 Age > 60
-
